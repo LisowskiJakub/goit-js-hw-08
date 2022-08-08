@@ -11,7 +11,15 @@ player.getVideoTitle().then(function (title) {
     console.log('title:', title);
 
 });
-player.getCurrentTime('timeupdate', throttle((seconds) => {
+player.getCurrentTime().then(function(seconds) {
+    throttle((sec) => {
+        localStorage.setItem("videoplayer-current-time", `${sec}`)
+    }, 500)
+    // seconds = the current playback position
+}).catch(function(error) {
+    // an error occurred
+});
+player.getCurrentTime(throttle((seconds) => {
     localStorage.setItem("videoplayer-current-time", `${seconds}`)
 }, 500)
 );
