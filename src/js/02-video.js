@@ -13,13 +13,11 @@
   });
 
 
-  throttle(() => {
-    console.log("Scroll handler call every 300ms");
-  }, 300)
+  
 
 
 player.on('timeupdate', throttle(({ duration, percent, seconds })=>{
-localStorage.setItem("videoplayer-current-time",`${seconds}`)},5000)
+localStorage.setItem("videoplayer-current-time",`${seconds}`)},500)
 );
 
  player.setCurrentTime(localStorage.getItem("videoplayer-current-time")).catch(function(error) {
